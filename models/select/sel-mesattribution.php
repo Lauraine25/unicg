@@ -1,0 +1,4 @@
+<?php
+
+$SelData=$connexion->prepare("SELECT attribution.*,cours.unitedenseignement,cours.nomcours,cours.credit,cours.volumehoraire,semestre.nomsemestre,enseignant.*,promotion.nompromotion,filiere.nomfiliere,departement.nomdepartement,faculte.nom as nomfaculte from attribution,cours,semestre,enseignant,promotion,filiere,departement,faculte,affectation WHERE attribution.id_semestre=semestre.id_semestre and attribution.id_cours=cours.id and attribution.matriculeenseignant=enseignant.matricule and affectation.id_cours=cours.id and affectation.id_promotion=promotion.id and promotion.idfiliere=filiere.id and filiere.iddepartement=departement.id and departement.idfaculte=faculte.id   and enseignant.matricule=? ");
+$SelData->execute(array($_SESSION['matricule']));
